@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+sudo apt-get install ufw
+
+sudo ufw status
+
+sudo ufw enable
+
+sudo ufw route allow proto tcp from any to port 8080
+
+sudo ufw show added
