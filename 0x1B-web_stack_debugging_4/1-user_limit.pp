@@ -1,24 +1,7 @@
-Here is the equivalent configuration written in Puppet:
-```
-class holberton {
-  user { 'holberton':
-    ensure => present,
-    password => 'password',
-    groups => ['sudo'],
-  }
+# Change the OS configuration so that it is possible to login
+# with the holberton user and open a file without any error message.
 
-  package { 'puppet-lint':
-    ensure => installed,
-  }
-
-  file { '/home/holberton/example.pp':
-    ensure => present,
-    owner => 'holberton',
-    group => 'holberton',
-  }
-
-  exec { 'run-puppet-lint':
-    command => 'puppet-lint /home/holberton/example.pp',
-    user => 'holberton',
-  }
+exec {'OS security config':
+  command => 'sed -i "s/holberton/foo/" /etc/security/limits.conf',
+  path    => '/usr/bin/env/:/bin/:/usr/bin/:/usr/sbin/'
 }
